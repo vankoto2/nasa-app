@@ -1,40 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { fetchEarthImage } from "../utils/fetchEarthImage";
 
 const EarthPage: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const fetchEarthImage = async (lat: number, lon: number) => {
-    try {
-      const apiKey = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY";
-      const apiUrl = `https://api.nasa.gov/planetary/earth/assets?lon=${lon}&lat=${lat}&date=2022-09-01&dim=0.10&api_key=${apiKey}`;
-
-      const response = await fetch(apiUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP Error: ${response.status}`);
-      }
-
-      const data = await response.json();
-      if (data.url) {
-        setImageUrl(data.url);
-      } else {
-        setError("No image available for this location and date.");
-      }
-    } catch (err: any) {
-      setError(err.message || "Failed to fetch image.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchImageWithLocation = async (lat: number, lon: number) => {
+      try {
+        const url = await fetchEarthImage(lat, lon);
+        setImageUrl(url);
+      } catch (err: any) {
+        setError(err.message || "Failed to fetch image.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          fetchEarthImage(latitude, longitude);
+          fetchImageWithLocation(latitude, longitude);
         },
         () => {
           setError("Unable to retrieve your location.");

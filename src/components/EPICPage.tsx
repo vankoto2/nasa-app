@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-
-interface EpicImage {
-  date: string;
-  image: string;
-  caption: string;
-  url?: string;
-}
+import { fetchEPICImages, EpicImage } from "../utils/fetchEPICImages";
 
 const EPICPage: React.FC = () => {
   const [images, setImages] = useState<EpicImage[]>([]);
@@ -14,38 +8,23 @@ const EPICPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchEPICImages = async () => {
-      const apiKey = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY";
-      const apiUrl = `https://api.nasa.gov/EPIC/api/natural/images?api_key=${apiKey}`;
+    const loadEPICImages = async () => {
       try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch EPIC data: ${response.status}`);
-        }
-        const data = await response.json();
-        if (data && data.length > 0) {
-          const imagesWithUrls = data.map((item: any) => {
-            const formattedDate = item.date.split(" ")[0].replaceAll("-", "/");
-            const imageUrl = `https://epic.gsfc.nasa.gov/archive/natural/${formattedDate}/jpg/${item.image}.jpg`;
-            return { ...item, url: imageUrl };
-          });
-          setImages(imagesWithUrls);
-          setSelectedImage(imagesWithUrls[0]);
-        } else {
-          setError("No images found from the EPIC API.");
-        }
+        const epicImages = await fetchEPICImages();
+        setImages(epicImages);
+        setSelectedImage(epicImages[0]);
       } catch (err: any) {
         setError(err.message || "Failed to fetch images. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
-    fetchEPICImages();
+    loadEPICImages();
   }, []);
 
   const handleDateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedDate = event.target.value;
-    const image = images.find(img => img.date === selectedDate);
+    const image = images.find((img) => img.date === selectedDate);
     setSelectedImage(image || null);
   };
 

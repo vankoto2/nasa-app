@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-interface ApodData {
-  date: string;
-  explanation: string;
-  url: string;
-  title: string;
-}
+import { fetchApod, ApodData } from "../utils/fetchApod";
 
 const AstronomyPictureOfTheDay: React.FC = () => {
   const [data, setData] = useState<ApodData | null>(null);
@@ -15,27 +9,19 @@ const AstronomyPictureOfTheDay: React.FC = () => {
     new Date().toISOString().slice(0, 10)
   );
 
-  const fetchApod = async (date: string) => {
-    const apiKey = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY";
-    const apiUrl = `https://api.nasa.gov/planetary/apod?date=${date}&api_key=${apiKey}`;
-
-    try {
-      setLoading(true);
-      const response = await fetch(apiUrl);
-      if (!response.ok) {
-        throw new Error("Failed to fetch APOD data");
-      }
-      const jsonData = await response.json();
-      setData(jsonData);
-    } catch (err: any) {
-      setError(err.message || "Error fetching data.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchApod(selectedDate);
+    const getApodData = async () => {
+      try {
+        setLoading(true);
+        const apodData = await fetchApod(selectedDate);
+        setData(apodData);
+      } catch (err: any) {
+        setError(err.message || "Error fetching data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    getApodData();
   }, [selectedDate]);
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {

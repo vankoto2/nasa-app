@@ -7,7 +7,7 @@ const HomePage: React.FC = () => {
       <h1 className="text-4xl font-extrabold">Welcome to NASA</h1>
       <Planet />
       <p className="text-lg leading-relaxed">
-        Dive into the cosmos! This project showcases NASA's APIs, bringing amazing space content to your fingertips. 
+        Dive into the cosmos! This project showcases NASA's APIs, bringing amazing space content to your fingertips.
         Explore the wonders of the universe with interactive features and breathtaking images.
       </p>
     </div>
