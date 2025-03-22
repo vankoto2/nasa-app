@@ -17,7 +17,6 @@ const EarthPage: React.FC = () => {
       }
 
       const data = await response.json();
-      console.log(data);
       if (data.url) {
         setImageUrl(data.url);
       } else {
@@ -37,7 +36,7 @@ const EarthPage: React.FC = () => {
           const { latitude, longitude } = position.coords;
           fetchEarthImage(latitude, longitude);
         },
-        (geoError) => {
+        () => {
           setError("Unable to retrieve your location.");
           setLoading(false);
         }
@@ -49,20 +48,25 @@ const EarthPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-6 max-w-3xl mx-auto text-center">
-      <h1 className="text-2xl font-bold mb-4">Earth View</h1>
-      {loading && <p className="text-gray-600">Loading...</p>}
-      {error && <p className="text-red-500">Error: {error}</p>}
+    <div className="p-6 max-w-5xl mx-auto flex flex-col items-center space-y-8">
+      <h1 className="text-3xl font-extrabold text-gray-800">Earth View</h1>
+      {loading && <p className="text-lg text-gray-600">Loading...</p>}
+      {error && <p className="text-lg text-red-500">{error}</p>}
       {imageUrl && (
-        <TransformWrapper>
-          <TransformComponent>
-            <img
-              src={imageUrl}
-              alt="Earth view"
-              className="rounded-lg shadow-lg mb-6 max-w-full h-auto"
-            />
-          </TransformComponent>
-        </TransformWrapper>
+        <div className="relative border rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
+          <TransformWrapper>
+            <TransformComponent>
+              <img
+                src={imageUrl}
+                alt="Earth view"
+                className="w-full h-auto object-cover"
+              />
+            </TransformComponent>
+          </TransformWrapper>
+          <p className="absolute top-2 left-2 bg-gray-900 text-white text-sm rounded-lg px-3 py-1 shadow-md">
+            Interactive View
+          </p>
+        </div>
       )}
     </div>
   );

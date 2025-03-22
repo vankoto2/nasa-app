@@ -43,30 +43,35 @@ const AstronomyPictureOfTheDay: React.FC = () => {
   };
 
   return (
-    <div className="p-4 sm:p-6 max-w-4xl mx-auto text-center">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6">Astronomy Picture of the Day</h1>
-      <label className="block text-left mb-4">
-        <span className="text-sm sm:text-base font-semibold">Select a Date:</span>
+    <div className="p-6 max-w-5xl mx-auto text-center space-y-8">
+      <h1 className="text-3xl font-extrabold text-gray-800">Astronomy Picture of the Day</h1>
+      <div className="space-y-4">
+        <label htmlFor="date-select" className="block text-lg font-medium text-gray-700">
+          Select a Date:
+        </label>
         <input
           type="date"
+          id="date-select"
           value={selectedDate}
           onChange={handleDateChange}
-          className="block w-full mt-2 p-2 border rounded-md focus:ring-2 focus:ring-blue-500 sm:text-base"
+          className="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200"
         />
-      </label>
-      {loading && <p className="text-gray-600 sm:text-lg">Loading...</p>}
-      {error && <p className="text-red-500 sm:text-lg">Error: {error}</p>}
+      </div>
+      {loading && <p className="text-lg text-gray-600">Loading...</p>}
+      {error && <p className="text-lg text-red-500">Error: {error}</p>}
       {data && (
-        <>
-          <h2 className="text-xl sm:text-2xl font-semibold mt-6">{data.title}</h2>
-          <p className="text-gray-500 sm:text-base mb-4">{data.date}</p>
-          <img
-            src={data.url}
-            alt={data.title}
-            className="mx-auto mb-6 w-full sm:max-w-lg rounded-lg shadow-md"
-          />
-          <p className="text-justify text-gray-700 sm:text-base">{data.explanation}</p>
-        </>
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-gray-900">{data.title}</h2>
+          <p className="text-lg text-gray-500">{data.date}</p>
+          <div className="relative">
+            <img
+              src={data.url}
+              alt={data.title}
+              className="rounded-lg shadow-lg max-w-full mx-auto"
+            />
+          </div>
+          <p className="text-lg text-gray-700 leading-relaxed">{data.explanation}</p>
+        </div>
       )}
     </div>
   );
