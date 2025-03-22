@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-lg">
+        <nav className="bg-gradient-to-r from-blue-500/10 to-blue-700/10 text-[#A0AEB6] shadow-lg">
             <div className="max-w-6xl mx-auto px-4">
                 <div className="flex justify-between items-center py-4">
                     <div className="text-2xl font-extrabold tracking-wide">
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
                     <div className="sm:hidden">
                         <button
                             onClick={toggleMenu}
-                            className="text-white focus:outline-none"
+                            className="text-[#A0AEB6] focus:outline-none"
                         >
                             <svg
                                 className="w-8 h-8"

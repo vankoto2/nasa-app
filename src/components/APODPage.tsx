@@ -44,9 +44,9 @@ const AstronomyPictureOfTheDay: React.FC = () => {
 
   return (
     <div className="p-6 max-w-5xl mx-auto text-center space-y-8">
-      <h1 className="text-3xl font-extrabold text-gray-800">Astronomy Picture of the Day</h1>
+      <h1 className="text-3xl font-extrabold text-[#A0AEB6]">Astronomy Picture of the Day</h1>
       <div className="space-y-4">
-        <label htmlFor="date-select" className="block text-lg font-medium text-gray-700">
+        <label htmlFor="date-select" className="block text-lg font-medium text-[#A0AEB6]">
           Select a Date:
         </label>
         <input
@@ -54,15 +54,15 @@ const AstronomyPictureOfTheDay: React.FC = () => {
           id="date-select"
           value={selectedDate}
           onChange={handleDateChange}
-          className="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200"
+          className="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 bg-white/20"
         />
       </div>
-      {loading && <p className="text-lg text-gray-600">Loading...</p>}
+      {loading && <p className="text-lg text-[#A0AEB6]">Loading...</p>}
       {error && <p className="text-lg text-red-500">Error: {error}</p>}
       {data && (
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-gray-900">{data.title}</h2>
-          <p className="text-lg text-gray-500">{data.date}</p>
+          <h2 className="text-2xl font-semibold text-[#A0AEB6]">{data.title}</h2>
+          <p className="text-lg text-[#A0AEB6]">{data.date}</p>
           <div className="relative">
             <img
               src={data.url}
@@ -70,7 +70,7 @@ const AstronomyPictureOfTheDay: React.FC = () => {
               className="rounded-lg shadow-lg max-w-full mx-auto"
             />
           </div>
-          <p className="text-lg text-gray-700 leading-relaxed">{data.explanation}</p>
+          <p className="text-lg text-[#A0AEB6] leading-relaxed">{data.explanation}</p>
         </div>
       )}
     </div>

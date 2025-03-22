@@ -59,15 +59,15 @@ const EPICPage: React.FC = () => {
 
   return (
     <div className="p-6 max-w-4xl mx-auto text-center">
-      <h1 className="text-3xl font-extrabold text-gray-800 mb-6">Explore NASA EPIC Images</h1>
+      <h1 className="text-3xl font-extrabold text-[#A0AEB6] mb-6">Explore NASA EPIC Images</h1>
       <div className="mb-6">
-        <label htmlFor="date-select" className="block mb-2 text-lg font-medium text-gray-700">
+        <label htmlFor="date-select" className="block mb-2 text-lg font-medium text-[#A0AEB6]">
           Select a date:
         </label>
         <select
           id="date-select"
           onChange={handleDateChange}
-          className="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200"
+          className="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 bg-white/20"
         >
           {images.map((img) => (
             <option key={img.date} value={img.date}>
@@ -83,13 +83,13 @@ const EPICPage: React.FC = () => {
             alt={selectedImage.caption}
             className="rounded-lg shadow-lg mb-4 w-full max-w-2xl h-auto"
           />
-          <p className="text-gray-700 text-lg mb-2">{selectedImage.caption}</p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-[#A0AEB6] text-lg mb-2">{selectedImage.caption}</p>
+          <p className="text-[#A0AEB6] text-sm">
             Date: {new Date(selectedImage.date).toLocaleString()}
           </p>
         </div>
       ) : (
-        <p className="text-gray-500">No image available for the selected date.</p>
+        <p className="text-[#A0AEB6]">No image available for the selected date.</p>
       )}
     </div>
   );
