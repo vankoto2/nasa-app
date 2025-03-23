@@ -2,16 +2,16 @@
 
 ## Steps to Run the Project
 
-### 1. **first step**
+### 1. **First step**
 ### run npm i
 
-### 2. **second step**
+### 2. **Second step**
 
 In .env file replace DEMO_KEY with real key from https://api.nasa.gov/
 
 note if you can't manage to add key please write me I will help you
 
-### 3. **third step**
+### 3. **Third step**
 ### npm run dev
 
 
