@@ -53,7 +53,7 @@ const AstronomyPictureOfTheDay: React.FC = () => {
             <img
               src={data.url}
               alt={data.title}
-              className="rounded-lg shadow-lg max-w-full mx-auto"
+              className="rounded-lg shadow-lg w-fit h-fit mx-auto"
             />
           </div>
           <p className="text-lg text-[#A0AEB6] leading-relaxed">{data.explanation}</p>

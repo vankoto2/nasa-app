@@ -37,12 +37,12 @@ const EarthPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-6 max-w-5xl mx-auto flex flex-col items-center space-y-8">
+    <div className="p-6 max-w-5xl mx-auto text-center space-y-8">
       <h1 className="text-3xl font-extrabold text-[#A0AEB6]">Earth View</h1>
       {loading && <p className="text-lg text-[#A0AEB6]">Loading...</p>}
       {error && <p className="text-lg text-red-500">{error}</p>}
       {imageUrl && (
-        <div className="relative border rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
+        <div className="border rounded-lg shadow-lg overflow-hidden w-full ">
           <TransformWrapper>
             <TransformComponent>
               <img

@@ -37,7 +37,7 @@ const EPICPage: React.FC = () => {
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto text-center">
+    <div className="p-6 max-w-5xl mx-auto text-center">
       <h1 className="text-3xl font-extrabold text-[#A0AEB6] mb-6">Explore NASA EPIC Images</h1>
       <div className="mb-6">
         <label htmlFor="date-select" className="block mb-2 text-lg font-medium text-[#A0AEB6]">
