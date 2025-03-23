@@ -42,7 +42,7 @@ const EarthPage: React.FC = () => {
       {loading && <p className="text-lg text-[#A0AEB6]">Loading...</p>}
       {error && <p className="text-lg text-red-500">{error}</p>}
       {imageUrl && (
-        <div className="border rounded-lg shadow-lg overflow-hidden w-full ">
+        <div className="relative border rounded-lg shadow-lg overflow-hidden w-full ">
           <TransformWrapper>
             <TransformComponent>
               <img
