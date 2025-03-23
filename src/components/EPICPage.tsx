@@ -29,7 +29,7 @@ const EPICPage: React.FC = () => {
   };
 
   if (loading) {
-    return <p className="text-center p-6">Loading...</p>;
+    return <p className="text-center p-6 text-[#A0AEB6]">Loading...</p>;
   }
 
   if (error) {
